@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es2015", "es2016", "es2017", "es2018", "dom"],
+    "alwaysStrict": false,
+    "experimentalDecorators": true, // 启用实验性的ES装饰器
+    "sourceMap": true, // 是否生成map文件
+    "target": "ES5" ,
+    "downlevelIteration": true,  // 在以“ES5”或“ES3”为目标时，为“for of”、“spread”和“destructuring”中的iterables提供完全支持。
+  },
+  "include": ["src/**/*", "dev-test/**/*"],
+  "exclude": ["node_modules/**/*"]
+}
