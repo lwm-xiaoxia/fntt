@@ -6,8 +6,9 @@ import testArg from '../other/testArg';
  * @param number 要格式化到数字
  * @return 格式化后的数字
  * @example 
- * formatNum(3, 5)
- * // => '005'
+ * 
+ * 		formatNum(3, 5); // => '005'
+ * 
  */
 const formatNum = (digit: number, num: number): string => {
   const isArg = testArg([digit, 'number'], [num, 'number']);
