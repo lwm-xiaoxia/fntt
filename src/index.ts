@@ -40,6 +40,7 @@ export { default as after } from './function/after';
 export { default as antiShake } from './function/antiShake';
 export { default as throttle } from './function/throttle';
 export { default as performanceTime } from './function/performanceTime';
+export { default as polling } from './function/polling';
 
 /**
  * @module 函数式编程模块
