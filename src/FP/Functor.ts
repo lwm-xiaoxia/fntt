@@ -15,3 +15,5 @@ export default class Functor {
     return new this(value);
   }
 }
+
+// 测试
