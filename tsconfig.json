@@ -7,6 +7,6 @@
     "target": "ES5" ,
     "downlevelIteration": true,  // 在以“ES5”或“ES3”为目标时，为“for of”、“spread”和“destructuring”中的iterables提供完全支持。
   },
-  "include": ["src/**/*", "dev-test/**/*"],
+  "include": ["src/**/*", "dev-test/**/*", "__test__"],
   "exclude": ["node_modules/**/*"]
 }

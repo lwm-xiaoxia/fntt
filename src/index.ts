@@ -104,7 +104,7 @@ export { default as objCover } from './object/objCover';
  * @description 其他的各种函数封装
  */
 export { default as range } from './other/range';
-export { default as deepCopy } from './other/deepCopy';
+export { default as clone } from './other/clone';
 export { default as toBase64 } from './other/toBase64';
 export { default as isFullScreen } from './other/isFullScreen';
 

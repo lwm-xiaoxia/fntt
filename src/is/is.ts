@@ -7,10 +7,12 @@ import curry from '../FP/curry';
 import isArray from "./isArray";
 import isObj from './isObj';
 import isQuote from "./isQuote";
+import isFDR from '../_.internal/_isFDR';
+import isBoth from './isBoth';
 
 
 // 两个值是否都是 函数 日期 正则表达式
-const _isFDR = (val1: any, val2: any): boolean => 
+const _isBothFDR = (val1: any, val2: any): boolean => 
   isFunction(val1) && isFunction(val2)
   || isDate(val1) && isDate(val2)
   || isReg(val1) && isReg(val2);
@@ -91,7 +93,7 @@ const is = (value1: any, value2: any): boolean => {
     return value1 === value2;
   }
   // 函数 日期 正则表达式
-  if ( _isFDR(value1, value2) ) {
+  if ( _isBothFDR(value1, value2) ) {
     return value1.toString() === value2.toString();
   }
 

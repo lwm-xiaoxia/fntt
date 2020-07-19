@@ -1,4 +1,4 @@
-import chunk from '../array/chunk';
+import chunk from '../src/array/chunk';
 
 test('测试 chunk', () => {
     expect( chunk(3, [0, 1, 2, 3, 4, 5 ,6 ,7, 8, 9]) )

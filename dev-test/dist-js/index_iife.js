@@ -16,6 +16,18 @@
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
 
+    function __values(o) {
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+        if (m) return m.call(o);
+        if (o && typeof o.length === "number") return {
+            next: function () {
+                if (o && i >= o.length) o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+    }
+
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
         if (!m) return o;
@@ -38,6 +50,21 @@
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
+
+    /**
+     * @description 判断是否是对象类型
+     * @param value 要判断的值
+     * @returns 如果是传入的值是对象类型则返回true，如果不是则返回false
+     * @example
+     *
+     *    isObj({}); // => true
+     *
+     *    isObj([]); // => false;
+     *
+     */
+    var isObj = function (value) {
+        return Object.prototype.toString.call(value) === '[object Object]';
+    };
 
     var _pipe = function (value) {
         var args = [];
@@ -203,6 +230,23 @@
         return Right;
     }());
 
+    /**
+     * @description 判断是否是日期对象
+     * @param value 要判断的值
+     * @returns 如果是传入的值是日期类型则返回true，如果不是则返回false
+     * @virtual
+     *
+     *    const isDate = (value: any): boolean => value.constructor === Date;
+     *
+     * @example
+     *
+     *    isDate(new Date()); // => true
+     *
+     *    isDate({}); // => false
+     *
+     */
+    var isDate = function (value) { return value instanceof Date; };
+
     // 是否是浏览器环境
     var isBrowser = typeof window !== 'undefined';
     //
@@ -220,7 +264,130 @@
     // 是否是谷歌浏览器
     var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
 
-    console.log( Monad.of( Monad.of( Monad.of(3).map(x => x ** 2) ) ).join().flatMap(x => x * 2) );
-    //console.log('=', Monad.of(3).join());
+    /**
+     * @description 判断是不是原始数据
+     * @param value 要判断的值
+     * @returns 如果是传入的值是原始数据类型则返回true，如果不是则返回false
+     * @example
+     *
+     *    isRaw(Symbol('hello')); // => true
+     *
+     *    isRaw([]); // => false
+     *
+     */
+    var isRaw = function (value) {
+        return typeof value === 'string'
+            || typeof value === 'number'
+            || typeof value === 'boolean'
+            || typeof value === 'undefined'
+            || typeof value === 'symbol'
+            || value === null;
+    };
+
+    /**
+     * @description 判断是否是函数
+     * @param value 要判断的值
+     * @returns 如果是传入的值是函数类型则返回true，如果不是则返回false
+     * @example
+     *
+     *    isFunction(() => {}); // => true
+     *
+     *    isFunction(true); // => false;
+     *
+     */
+    var isFunction = function (value) { return typeof value === 'function'; };
+
+    /**
+     * @description 判断是否是正则表达式
+     * @param value 要判断的值
+     * @returns 如果是传入的值是正则表达式则返回true，如果不是则返回false
+     * @example
+     *
+     *    isFunction(() => {}); // => true
+     *
+     *    isFunction(true); // => false;
+     *
+     */
+    var isReg = function (value) { return value instanceof RegExp; };
+
+    /**
+     * @description 判断是否是数组
+     * @returns 如果是传入的值是数组类型则返回true，如果不是则返回false
+     */
+    var isArray = Array.isArray;
+
+    /**
+     * @description 判断一个值是否是函数、日期、正则表达式
+     * @param value 要判断的值
+     * @returns 如果是传入的值满足条件返回true，如果不是则返回false
+     */
+    var isFDR = function (value) {
+        return isFunction(value)
+            || isDate(value)
+            || isReg(value);
+    };
+
+    // 判断是不是对象或者数组
+    var _isObjArr = function (value) {
+        return isObj(value)
+            || isArray(value);
+    };
+    // 克隆对象
+    var _cloneObj = function (func, obj) {
+        var result = {};
+        for (var key in obj) {
+            var value = obj[key];
+            if (_isObjArr(value))
+                result[key] = func(value);
+            else
+                result[key] = value;
+        }
+        return result;
+    };
+    // 克隆数组
+    var _colneArr = function (func, arr) {
+        var e_1, _a;
+        var result = [];
+        try {
+            for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
+                var value = arr_1_1.value;
+                if (_isObjArr(arr))
+                    result.push(func(value));
+                else
+                    result.push(value);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (arr_1_1 && !arr_1_1.done && (_a = arr_1.return)) _a.call(arr_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return result;
+    };
+    /**
+     * @description 用来深克隆原始值，数组，对象，函数，
+     * 对于 Date,  RegExp, Map, Set等是浅拷贝
+     * @param target 要克隆的值
+     * @return 返回一个深克隆后的值
+     */
+    var colne = function (value) {
+        // 原始值、函数、正则表达式、日期对象
+        if (isRaw(value) || isFDR(value)) {
+            return value;
+        }
+        else if (isObj(value)) {
+            return _cloneObj(colne, value);
+        }
+        else if (isArray(value)) {
+            return _colneArr(colne, value);
+        }
+        return value;
+    };
+
+    const r = colne([0, 1, [2, 3]]);
+
+    console.log( r );
 
 }());
