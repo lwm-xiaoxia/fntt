@@ -1,3 +1,3 @@
-import { adjust } from '../../src/index';
+import { shuffle } from '../../src/index';
 
-console.log( adjust(2, value => value.toUpperCase(value), ['a', 'b', 'c', 'd']) );
+console.log( shuffle([1, 6, 3, '15', 56, 'hello', false]) );

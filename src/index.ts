@@ -14,6 +14,7 @@ export { default as uniq } from './array/uniq';
 export { default as statistic } from './array/statistic';
 export { default as adjust } from './array/adjust';
 export { default as arrCover } from './array/arrCover';
+export { default as shuffle } from './array/shuffle';
 
 /**
  * @module date模块
@@ -50,7 +51,6 @@ export { default as curry } from './FP/curry';
 export { default as pipe } from './FP/pipe';
 export { default as Functor } from './FP/Functor';
 export { default as Maybe } from './FP/Maybe';
-// export { default as Either } from './FP/Either';
 export { default as Ap } from './FP/Ap';
 export { default as Monad } from './FP/Monad';
 export { default as lazy } from './FP/lazy';
