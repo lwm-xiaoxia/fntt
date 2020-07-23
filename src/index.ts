@@ -124,4 +124,5 @@ export { default as parseUrl } from './url/parseUrl';
 export { default as getUrlParam } from './url/getUrlParam';
 export { default as param } from './url/param';
 
-
+// https://gitee.com/xiaoxialwm/fntt.git
+// https://gitee.com/xiaoxialwm/fntt.git
