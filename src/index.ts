@@ -26,7 +26,7 @@ export { default as formatDate } from './date/formatDate';
  * @module DOM模块
  * @description DOM对象相关的扩展封装
  */
-export { default as classNames } from './DOM/classNames';
+
 
 /**
  * @module event模块
@@ -107,6 +107,8 @@ export { default as range } from './other/range';
 export { default as clone } from './other/clone';
 export { default as toBase64 } from './other/toBase64';
 export { default as isFullScreen } from './other/isFullScreen';
+export { default as $dom } from './other/dom';
+export { default as $event } from './other/event';
 
 /**
  * @module string模块
@@ -115,6 +117,7 @@ export { default as isFullScreen } from './other/isFullScreen';
 export { default as escape } from './string/escape';
 export { default as rvStr } from './string/rvStr';
 export { default as toCase } from './string/toCase';
+export { default as classNames } from './string/classNames';
 
 /**
  * @module url模块
@@ -123,6 +126,3 @@ export { default as toCase } from './string/toCase';
 export { default as parseUrl } from './url/parseUrl';
 export { default as getUrlParam } from './url/getUrlParam';
 export { default as param } from './url/param';
-
-// https://gitee.com/xiaoxialwm/fntt.git
-// https://gitee.com/xiaoxialwm/fntt.git
