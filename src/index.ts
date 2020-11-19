@@ -126,5 +126,3 @@ export { default as classNames } from './string/classNames';
 export { default as parseUrl } from './url/parseUrl';
 export { default as getUrlParam } from './url/getUrlParam';
 export { default as param } from './url/param';
-
-// test
